@@ -3653,7 +3653,14 @@ term_paint(void)
           }
         }
 
-        if ((tattr.attr & TATTR_WIDE) == 0
+        int elen = (tattr.attr & FONTFAM_MASK) >> ATTR_FONTFAM_SHIFT;
+        if ((tattr.attr & TATTR_EMOJI) && elen == 1) {
+          // if we are determined to display emoji presentation 
+          // but the emoji length is only 1 cell,
+          // narrow the emoji graphics in order not to get clipped
+          tattr.attr |= TATTR_NARROW;
+        }
+        else if ((tattr.attr & TATTR_WIDE) == 0
             && cfg.char_narrowing < 100
             && win_char_width(xch, tattr.attr) == 2
             // && !(line->lattr & LATTR_MODE) ? "do not tamper with graphics"
@@ -3669,12 +3676,19 @@ term_paint(void)
 
           if (
               // do not narrow various symbol ranges;
+              // (excemption from the else case that triggers auto-narrowing)
               // this is a bit redundant with Symbol overhang below
                  (xch >= 0x2190 && xch <= 0x25FF)
               || (xch >= 0x27C0 && xch <= 0x2BFF)
              )
           {
-            //tattr.attr |= TATTR_NARROW1; // ?
+            if (wcschr(W("⌚⌛⏩⏪⏫⏬⏰⏳⬛⬜⭐⭕"), xch)) {
+              // narrow text presentation symbols (excempt from excemption)
+              // that are typically too wide and would overhang
+              tattr.attr |= TATTR_NARROW;
+              // prevent clearing of TATTR_NARROW flag
+              tattr.attr &= ~TATTR_OVERHANG;
+            }
           }
           else {
 #ifdef failed_attempt_to_tame_narrowing
