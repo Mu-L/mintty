@@ -3,6 +3,7 @@ Terminal features
   * Suppress ReGIS delay command on graphics refresh.
   * Ensure refresh of blinking graphics (broken since 3.7.9).
   * Fix emoji sequence rendering in context of font or changing attributes.
+  * DECRQM requests for UTF-8, ambiguous-wide and emoji width modes (xterm 407).
 
 Character rendering
   * Font substitution mechanism checks glyph coverage and selects suitable alternative font (#1352).

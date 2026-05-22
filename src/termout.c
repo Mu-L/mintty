@@ -19,7 +19,7 @@
 
 #include <termios.h>
 #include <sys/time.h>
-#if CYGWIN_VERSION_API_MINOR >= 74
+#if CYGWIN_VERSION_API_MINOR >= 66
 #include <langinfo.h>  // nl_langinfo, CODESET
 #endif
 
@@ -2854,6 +2854,18 @@ get_mode(bool privatemode, int arg)
         return 2 - term.vt220_keys;
       when 2004:       /* xterm bracketed paste mode */
         return 2 - term.bracketed_paste;
+      when 1020: {
+#if CYGWIN_VERSION_API_MINOR >= 66
+        bool utf8 = strcmp(nl_langinfo(CODESET), "UTF-8") == 0;
+#else
+        bool utf8 = strstr(cs_get_locale(), ".65001");
+#endif
+        return 2 - utf8;
+      }
+      when 1021:
+        return 2 - cs_ambig_wide;
+      when 1022:
+        return 2 - term.emoji_width;
 
       /* Mintty private modes */
       when 7700:       /* CJK ambiguous width reporting */
@@ -4737,7 +4749,7 @@ respond_capabilities(void)
      )
     p += sprintf(p, "M");  // MOUSE
   p += sprintf(p, "Sc7");  // DECSCUSR
-#if CYGWIN_VERSION_API_MINOR >= 74
+#if CYGWIN_VERSION_API_MINOR >= 66
   if (0 == strcmp(nl_langinfo(CODESET), "UTF-8")) {
     p += sprintf(p, "U");  // UNICODE_BASIC
     p += sprintf(p, "Uw%d", UNICODE_VERSION / 100);  // UNICODE_WIDTHS
