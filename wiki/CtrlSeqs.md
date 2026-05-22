@@ -607,10 +607,12 @@ The following rules describe the character sequences to be handled as
    regardless of whether it has a glyph in the current glyph set.
 1. Appending variation selector U+FE0F as a combining character changes any 
    character to double-width.
-2. Appending a zero-width joiner U+200D or a Fitzpatrick modifier 
-   or a TAG (U+E0020..U+E007F) also forces any character to double-width.
-3. Fitzpatrick modifiers have zero width except at line beginning.
-4. The zero-width joiner U+200D forces the subsequent character to 
+2. Appending variation selector U+FE0E as a combining character changes any 
+   character to single-width.
+3. Appending a zero-width joiner U+200D or a Fitzpatrick modifier 
+   or a TAG (U+E0020..U+E007F) to an emoji character enforces double-width.
+4. Fitzpatrick modifiers have zero width except at line beginning.
+5. The zero-width joiner U+200D forces the subsequent character to 
    also be treated like a combining character, thus not add any width.
 
 Note that by rule 0 neither actual glyph availabilty nor the listing 
@@ -622,6 +624,17 @@ Unicode versions and emoji graphic resources.
 Note that other terminals support a “Unicode width” mode which may deviate 
 from the rules applied by mintty; a common specification is not yet agreed.
 For this reason, there are currently 2 mode setting sequences.
+
+
+## Variation selectors ##
+
+The combining characters VARIATION SELECTOR 15 (U+FE0E) and VARIATION 
+SELECTOR 16 (U+FE0F) can be appended (as combining characters) to 
+modify character width:
+  * VS15 (U+FE0E) enforces text presentation of an emoji character.
+    In emoji width mode, it also enforces single-cell width character.
+  * VS16 (U+FE0F) enforces graphic emoji presentation of an emoji character.
+    In emoji width mode, it also enforces double-cell width character.
 
 
 ## Background image ##

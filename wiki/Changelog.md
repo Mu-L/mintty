@@ -8,6 +8,7 @@ Character rendering
   * Font substitution mechanism checks glyph coverage and selects suitable alternative font (#1352).
   * Narrow single-cell-rendered emoji graphics.
   * Narrow certain single-cell-rendered emoji text presentations from Miscellaneous ranges.
+  * In emoji width mode, apply VS15 modifier to narrow character.
 
 Keyboard handling
   * After IME option switch, reset Control state to avoid input misinterpretation (#1353).

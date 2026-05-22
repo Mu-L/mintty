@@ -1204,6 +1204,8 @@ write_char(wchar c, int width)
       printf("write_char %04X %2d %08llX\n", c, width, curs->attr.attr);
 #endif
       if (curs->x > 0 || overstrike) {
+        bool fix_glitch = false;
+
        /* If we're in wrapnext state, the character
         * to combine with is _here_, not to our left. */
         int x = curs->x - !curs->wrapnext;
@@ -1213,12 +1215,32 @@ write_char(wchar c, int width)
        /*
         * If the previous character is UCSWIDE, back up another one.
         */
-        bool is_wide = false;
+        bool base_is_wide = false;
         if (line->chars[x].chr == UCSWIDE) {
           assert(x > 0);
           x--;
-          is_wide = true;
+          base_is_wide = true;
         }
+        else
+       /*
+        * Special case handling to avoid glitch:
+          in non-autowrap mode, in case a wide character at the end of line 
+          (where the cursor is stuck in VT100 stall-at-end-of-line position) 
+          is narrowed by VS15, we need to adjust position and set some flags.
+        */
+        if (!term.autowrap && line->chars[curs->x].chr == UCSWIDE) {
+          if (term.emoji_width && curs->x == term.cols - 1) {
+            curs->x --;
+            x = curs->x;
+            base_is_wide = true;
+            // flag to adjust cursor position below
+            fix_glitch = true;
+          }
+        }
+#ifdef debug_combining_position_adjustment
+        if (x >= term.cols - 2)
+          printf("[%d:%d] (x %d) %04X (base_wide %d) [x∓1] %04X %04X %04X lwrp %X cwrpnxt %d\n", curs->y, curs->x, x, c, base_is_wide, line->chars[x - 1].chr, line->chars[x].chr, line->chars[x + 1].chr, (line->lattr & (LATTR_WRAPPED | LATTR_WRAPPED2)), curs->wrapnext);
+#endif
         //printf("cur %d:%d prev :%d\n", curs->y, curs->x, x);
 
         if (term.emoji_width) {
@@ -1259,7 +1281,7 @@ write_char(wchar c, int width)
           }
 
          /* Enforce wide with certain modifiers */
-          if (!is_wide &&
+          if (!base_is_wide &&
               // enforce emoji sequence on:
               // U+FE0F VARIATION SELECTOR-16
               // U+200D ZERO WIDTH JOINER
@@ -1298,6 +1320,33 @@ write_char(wchar c, int width)
               curs->x++;
             }
           }
+         /* Enforce narrow with VS15 */
+          else if (base_is_wide && c == 0xFE0E && term.emoji_width) {
+            // position x was set to the character to be combined with
+
+            // clear right half of previously wide character
+            // also prevent insert_char/term_check_boundary 
+            // from seeing a wide character and spoiling it
+            line->chars[x + 1] = basic_erase_char;
+
+            if (curs->wrapnext)
+              curs->wrapnext = false;
+            else if (term.autowrap || curs->x < term.cols)
+              // backspace cursor to right half of previously wide character
+              curs->x -= 1;
+#ifdef VS15_pull_back
+            if (cfg.VS15_pull_back) {
+              // delete wide right half and move up rest of line
+              // (kitty does not do this)
+              insert_char(-1);  // delete UCSWIDE
+              // if the line is LATTR_WRAPPED, should we pull back 
+              // subsequent lines too???
+            }
+#endif
+          }
+          // tweak special case fixed above
+          if (fix_glitch)
+            curs->x += 2;
         }
 
        /* Try to precompose with the previous cell's base codepoint;
