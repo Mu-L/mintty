@@ -4494,12 +4494,27 @@ term_paint(void)
      /* Append combining and overstrike characters, combine surrogates */
       if (d->cc_next) {
         termchar *dd = d;
+        int Fitzpatrick = 0;
         while (dd->cc_next && textlen < maxtextlen) {
 #ifdef debug_surrogates
           wchar prev = dd->chr;
 #endif
           dd += dd->cc_next;
           wchar tchar = dd->chr;
+
+          // detect Fitzpatrick
+          // U+1F3FB..U+1F3FF EMOJI MODIFIER FITZPATRICKs
+          // UTF-16: D83C DFFB .. D83C DFFF
+          if (tchar == 0xD83C && dd->cc_next) {
+            termchar *ddnext = dd + dd->cc_next;
+            wchar tnext = ddnext->chr;
+            if (tnext >= 0xDFFB && tnext <= 0xDFFF)
+              Fitzpatrick = 1;
+          }
+          else if (Fitzpatrick == 1)
+            Fitzpatrick ++;
+          else
+            Fitzpatrick = 0;
 
           // skip joined ALEF:
           // if ALEF was handled like a combining char in order to trigger 
@@ -4546,8 +4561,17 @@ term_paint(void)
           }
           textattr[textlen] = tattr;
 
-          if (cfg.emojis && tchar == 0xFE0E)
+          // we could try to limit the VS15/VS16 skip cases below
+          // as flagged during output, but that didn't work out
+          //bool emoji_width = d->attr.attr & TATTR_EMOJI_WIDTH;
+
+          // append combining character for rendering (tweak some modifiers)
+          if (tchar == 0xFE0E)
             ; // skip text style variation selector
+          else if (tchar == 0xFE0F)
+            ; // skip emoji style variation selector
+          else if (Fitzpatrick)
+            ; // skip Fitzpatrick if written as combining in emoji width mode
           else if (tchar >= 0x2066 && tchar <= 0x2069)
             // hide bidi isolate mark glyphs (if handled zero-width)
             text[textlen++] = 0x200B;  // zero width space

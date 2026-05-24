@@ -10,6 +10,7 @@ Character rendering
   * Narrow single-cell-rendered emoji graphics.
   * Narrow certain single-cell-rendered emoji text presentations from Miscellaneous ranges.
   * In emoji width mode, apply VS15 modifier to narrow character.
+  * Do not display VS15/VS16 modifiers, or Fitzpatrick in emoji width mode.
 
 Keyboard handling
   * After IME option switch, reset Control state to avoid input misinterpretation (#1353).
