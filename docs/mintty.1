@@ -1820,6 +1820,14 @@ note that they may overlap into the next character(s).
 ./ul
 
 .TQ
+\fBEmoji width mode\fP (EmojiWidth=no)
+In emoji width mode, emojis are always displayed in 2-cell width, 
+matching the appearance of emoji graphics, rather than locale-conformant.
+This option sets the default of emoji width mode, which can also be switched 
+by an escape sequence, DECSET 2027.
+(Corresponds partially to the xterm resource \fBemojiWidth\fP.)
+
+.TQ
 \fBShow dim as font\fP (DimAsFont=yes)
 This option sets the preferred rendering of the ANSI dim (or 'half-bright') 
 text attribute to use a Light font variation if available; 

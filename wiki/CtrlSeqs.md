@@ -579,8 +579,6 @@ For values, see setting `Emojis` in the manual.
 
 ## Emoji width mode ##
 
-— EXPERIMENTAL —
-
 By default, mintty displays emojis, particularly emoji sequences, in a 
 grid cell width as defined by the locale function wcswidth. 
 This can yield emoji display in variable width, from 1 cell up to 8 cells, 
@@ -591,12 +589,14 @@ rendering of emojis, an application can choose to display emojis
 always in 2-cell width, matching the appearance of emoji graphics, 
 albeit compromising system-defined string width.
 
+Emoji width mode can be configured as default with option `EmojiWidth`.
+
 | **sequence**  | **emoji width**                          |
 |:--------------|:-----------------------------------------|
 | `^[[?2027l`   | wcwidth/wcswidth                         |
 | `^[[?2027h`   | 2-cell (mode setting of other terminals) |
 | `^[[?7769l`   | wcwidth/wcswidth                         |
-| `^[[?7769h`   | 2-cell (mintty mode setting)             |
+| `^[[?7769h`   | 2-cell (mintty mode setting, deprecated) |
 
 The following rules describe the character sequences to be handled as 
 2-cell emojis:

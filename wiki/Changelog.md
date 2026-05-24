@@ -11,6 +11,7 @@ Character rendering
   * Narrow certain single-cell-rendered emoji text presentations from Miscellaneous ranges.
   * In emoji width mode, apply VS15 modifier to narrow character.
   * Do not display VS15/VS16 modifiers, or Fitzpatrick in emoji width mode.
+  * Emoji width mode can be preconfigured as default.
 
 Keyboard handling
   * After IME option switch, reset Control state to avoid input misinterpretation (#1353).
@@ -33,6 +34,7 @@ Configuration
   * New option FontSubst (#1352).
   * New option CursorSize (#1360).
   * New option OldAppKeypad (#1357).
+  * New option EmojiWidth.
 
 ### 3.8.2 (15 February 2026) ###
 
