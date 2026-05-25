@@ -32,9 +32,9 @@ These escape sequences cause mintty to report its identification.
 
 Mintty supports the primary device attributes request conditionally:
 
-| **request** | **response**                             |
-|:------------|:-----------------------------------------|
-| `^[[c`      | `^[[?65;1;2;4;6;9;11;15;21;22;28;29;52c` |
+| **request** | **response**                               |
+|:------------|:-------------------------------------------|
+| `^[[c`      | `^[[?65;1;2;3;4;6;9;11;15;21;22;28;29;52c` |
 
 Tags 1, 22, and extended tag 52 are only included if the respective features 
 are not disabled (e.g. by setting Suppress options). Tags 11, 21, 28 are 
