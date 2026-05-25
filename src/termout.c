@@ -1023,6 +1023,15 @@ write_char(wchar c, int width)
   last_char = c;
   last_attr = curs->attr;
 
+  wchar last_comb(termline *line, int col)
+  {
+    while (line->chars[col].cc_next) {
+      col += line->chars[col].cc_next;
+      //printf(" comb %04X\n", line->chars[col].chr);
+    }
+    return line->chars[col].chr;
+  }
+
   void put_char(wchar c)
   {
     if (term.ring_enabled && curs->x == term.marg_right + 1 - 8) {
@@ -1132,7 +1141,9 @@ write_char(wchar c, int width)
     //printf("ini %d:%d prev :%d\n", curs->y, curs->x, x);
     // if it's a pending emoji joined sequence, enforce handling of 
     // current character like a combining character
-    if (line->chars[x].attr.attr & TATTR_EMOJI)
+
+    //if (line->chars[x].attr.attr & TATTR_EMOJI)
+    if (last_comb(line, x) == 0x200D)
       //printf("@:%d (%04X) %04X prev joiner\n", x, line->chars[x].chr, c),
       width = 0;
   }
@@ -1249,17 +1260,17 @@ write_char(wchar c, int width)
             before we add its low surrogate (add_cc below)
          */
           bool emoji_joiner = c == 0x200D && could_be_emoji_base(&line->chars[x]);
+#if 0
+#warning flaky approach
+          // abusing TATTR_EMOJI to mark a pending joiner was a bad idea
+          // it caused glitches like on U+26A0 U+200D‍ at a line end
           if (emoji_joiner)
             //printf("%d:%d (%04X) %04X mark joiner\n", curs->y, curs->x, line->chars[x].chr, c),
             line->chars[x].attr.attr |= TATTR_EMOJI;
           else
             line->chars[x].attr.attr &= ~TATTR_EMOJI;
+#endif
 
-          wchar last_comb(termline *line, int col) {
-            while (line->chars[col].cc_next)
-              col += line->chars[col].cc_next;
-            return line->chars[col].chr;
-          }
           bool is_fitzpatrick = false;
 
          /* Tune Fitzpatrick colour on non-emojis */
