@@ -4117,7 +4117,9 @@ term_paint(void)
     overlay:;
     bool do_overlay = false;
 
-    int maxtextlen = max(term.cols, 16);
+    //int maxtextlen = max(term.cols, 16);
+    // set up a buffer sufficient for the whole line, including all combinings
+    int maxtextlen = max(line->size, 16);
     wchar text[maxtextlen];
     cattr textattr[maxtextlen];
     int textlen = 0;
