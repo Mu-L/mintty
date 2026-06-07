@@ -896,14 +896,15 @@ mintty supports direct drag-and-drop import of theme files in
 iTerm2 format, Windows terminal format, or JSON-embedded mintty format.
 Look for the following repositories:
 * https://iterm2colorschemes.com/
-* https://github.com/oumu/mintty-color-schemes
-* https://github.com/goreliu/wsl-terminal/tree/master/src/etc/themes
+* https://github.com/mskyaxl/wsl-terminal/tree/master/src/etc/themes
+* https://github.com/pine2D/mintty-color-schemes
 * [4bit Terminal Color Scheme Designer](http://ciembor.github.io/4bit/#)
 
 The [4bit Terminal Color Scheme Designer](http://ciembor.github.io/4bit/#) 
 lets you nicely craft and tune a colour scheme in various dimensions 
 (like hue, saturation, lightness) that affect colours consistently.
-Select “Download Scheme” – “mintty” for the mintty format.
+Select “Download Scheme” – “mintty” for the mintty format,
+or drag-and-drop the tuned scheme from the URL bar onto the mintty Options theme field.
 
 Mintty also provides the command-line script ```mintheme``` which can 
 display the themes available in the mintty configuration directories or 

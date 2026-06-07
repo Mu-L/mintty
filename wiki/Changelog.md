@@ -36,6 +36,7 @@ Configuration
   * New option CursorSize (#1360).
   * New option OldAppKeypad (#1357).
   * New option EmojiWidth.
+  * Enable drag-and-drop from updated 4bit Color Scheme Designer (#1363).
 
 ### 3.8.2 (15 February 2026) ###
 

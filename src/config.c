@@ -3262,7 +3262,77 @@ theme_handler(control *ctrl, int event)
   else if (event == EVENT_DROP) {
 #ifdef debug_scheme
     printf("EVENT_DROP <%ls>\n", dragndrop);
+    //<https://ciembor.github.io/4bit/?s=2ilAAA8PC0eEsZAGNbAABVcEAFonEJxBkrROID6HGFY1HMA#?scheme=000000:DFDFDF:DFDFDF:000000:94314A:4A9431:947B31:314A94:7B3194:31947B:DFDFDF:555555:DA90A3:A3DA90:DAC890:90A3DA:C890DA:90DAC8:FFFFFF>
 #endif
+    if (wcsncmp(W("https://ciembor.github.io/4bit/"), dragndrop, 31) == 0) {
+      wchar * scheme = wcsstr(dragndrop, W("?scheme="));
+      if (scheme) {
+        scheme += 8;
+        // colour scheme string
+        char * sch = null;
+        sch = strdup("scheme:;");
+
+        void schapp(char * name)
+        {
+          int c;
+          if (swscanf(scheme, W("%06X"), &c) == 1) {
+            scheme += 6;
+            if (*scheme == ':')
+              scheme ++;
+#if defined(debug_scheme) && debug_scheme > 1
+            printf("%s=%s\n", name, val);
+#endif
+            int len = sch ? strlen(sch) : 0;
+            sch = renewn(sch, len + strlen(name) + 11);
+            sprintf(&sch[len], "%s=#%06X;", name, c);
+          }
+        }
+
+        schapp("BackgroundColour");
+        schapp("ForegroundColour");
+        schapp("CursorColour");
+        schapp("Black");
+        schapp("Red");
+        schapp("Green");
+        schapp("Yellow");
+        schapp("Blue");
+        schapp("Magenta");
+        schapp("Cyan");
+        schapp("White");
+        schapp("BoldBlack");
+        schapp("BoldRed");
+        schapp("BoldGreen");
+        schapp("BoldYellow");
+        schapp("BoldBlue");
+        schapp("BoldMagenta");
+        schapp("BoldCyan");
+        schapp("BoldWhite");
+#if defined(debug_scheme)
+        printf("4bit %s\n", sch);
+#endif
+
+        // indicate downloaded scheme, to be named to Save
+        dlg_editbox_set_w(ctrl, DOWNLOADED);
+        // or preset a name for saving, use coded scheme tag as preset name
+        wchar * name = (wchar *)&dragndrop[34];
+        name -= 5;
+        wcsncpy(name, W("4bit-"), 5);
+        wchar * fin = wcsstr(dragndrop, W("#?scheme="));
+        * fin = 0;
+        dlg_editbox_set_w(ctrl, name);
+
+        // set actual colours values as scheme
+        wstring wsch = cs__utftowcs(sch);
+        wstrset(newtheme_ref, wsch);
+        delete(wsch);
+        do_apply = true;
+      }
+      else {
+        win_bell(&new_cfg);  // Could not extract scheme from URL
+        win_show_warning(_("Could not load web theme"));
+      }
+    }
+    else
     if (wcsncmp(W("data:text/plain,"), dragndrop, 16) == 0) {
       // indicate availability of downloaded scheme to be stored
       dlg_editbox_set_w(ctrl, DOWNLOADED);
@@ -3306,6 +3376,8 @@ theme_handler(control *ctrl, int event)
 #endif
             )
     {
+      // comefrom https://iterm2colorschemes.com/
+      // comefrom https://github.com/mskyaxl/wsl-terminal/tree/master/src/etc/themes
       char * url = cs__wcstoutf(dragndrop);
       char * sch = download_scheme(url);
       //printf("scheme %s\n", sch);
@@ -3378,6 +3450,9 @@ theme_handler(control *ctrl, int event)
   //printf("name %ls scheme %s\n", scheme_name ?: W("(null)"), scheme ?: "(null)");
   enable_widget(store_button, scheme_name && scheme);
   delete(theme_boxval);
+#ifdef debug_theme
+  printf("theme_handler: apply %d name <%ls> scheme <%s>\n", do_apply, scheme_name ?: W("null"), scheme ?: "");
+#endif
   if (scheme_name)
     free(scheme_name);
   if (scheme)
