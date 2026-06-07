@@ -1125,6 +1125,13 @@ rendered on the screen and width assumptions of the `wcwidth` function
 will be inconsistent then for the impacted characters, which may confuse 
 screen applications (such as editors) that rely on `wcwidth` information.
 
+### Unicode version enquiry ###
+
+If mintty is configured to use its own width tables (rather than the locale 
+API), the Secondary Device Attributes request (escape sequence `^[[>c`) 
+can be used to request the Unicode version which will be reported as the 
+third parameter of the response.
+
 ### Ambiguous width setting ###
 
 A number of Unicode characters have an “ambiguous width” property due to 
