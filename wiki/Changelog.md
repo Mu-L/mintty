@@ -29,6 +29,7 @@ Other
   * Restore Windows XP compatibility.
   * Fix WSL home dir conversion (option -~).
   * Make reading from clipboard more reliable (https://cygwin.com/pipermail/cygwin/2026-February/259438.html).
+  * Manual: note on how to override overridden shortcuts (#1364) with user-defined functions.
 
 Configuration
   * New option DropFocus (#1354).

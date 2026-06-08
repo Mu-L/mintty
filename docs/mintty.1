@@ -997,6 +997,21 @@ This section gives an overview of all the keyboard shortcuts.
 See also the final subsection on user-defined shortcuts.
 
 .TQ
+.B Shortcut priorities
+Keyboard shortcuts are generally overridden by modifyOtherKeys mode, 
+a terminal mode often used by applications like text editors to gain 
+finer control about keyboard input.
+This is in turn overridden by user-defined shortcuts, so the following 
+configuration example would redefine the Ctrl+Tab shortcut to work even 
+in modifyOtherKeys mode:
+.ul
+.en
+.ex
+KeyFunctions=C+Tab:switch-visible-next;
+.ee
+./ul
+
+.TQ
 .B Alt modifier key
 Note that \fBAlt+\fP in this description refers to the left Alt key. 
 For keyboards that have two Alt keys, the right Alt key is not generally 
