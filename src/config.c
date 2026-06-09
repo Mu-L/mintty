@@ -3262,11 +3262,12 @@ theme_handler(control *ctrl, int event)
   else if (event == EVENT_DROP) {
 #ifdef debug_scheme
     printf("EVENT_DROP <%ls>\n", dragndrop);
-    //<https://ciembor.github.io/4bit/?s=2ilAAA8PC0eEsZAGNbAABVcEAFonEJxBkrROID6HGFY1HMA#?scheme=000000:DFDFDF:DFDFDF:000000:94314A:4A9431:947B31:314A94:7B3194:31947B:DFDFDF:555555:DA90A3:A3DA90:DAC890:90A3DA:C890DA:90DAC8:FFFFFF>
 #endif
+#if CYGWIN_VERSION_API_MINOR >= 74
     if (wcsncmp(W("https://ciembor.github.io/4bit/"), dragndrop, 31) == 0) {
       wchar * scheme = wcsstr(dragndrop, W("?scheme="));
       if (scheme) {
+        //<https://ciembor.github.io/4bit/?s=2ilAAA8PC0eEsZAGNbAABVcEAFonEJxBkrROID6HGFY1HMA#?scheme=000000:DFDFDF:DFDFDF:000000:94314A:4A9431:947B31:314A94:7B3194:31947B:DFDFDF:555555:DA90A3:A3DA90:DAC890:90A3DA:C890DA:90DAC8:FFFFFF>
         scheme += 8;
         // colour scheme string
         char * sch = null;
@@ -3333,6 +3334,7 @@ theme_handler(control *ctrl, int event)
       }
     }
     else
+#endif
     if (wcsncmp(W("data:text/plain,"), dragndrop, 16) == 0) {
       // indicate availability of downloaded scheme to be stored
       dlg_editbox_set_w(ctrl, DOWNLOADED);
