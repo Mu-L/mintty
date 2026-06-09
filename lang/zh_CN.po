@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: mintty\n"
 "Report-Msgid-Bugs-To: https://github.com/mintty/mintty/issues/700\n"
-"POT-Creation-Date: 2026-06-09 00:26+0200\n"
+"POT-Creation-Date: 2026-06-09 00:32+0200\n"
 "PO-Revision-Date: 2024-06-28 23:51+0200\n"
 "Last-Translator: GeekDuanLian <dl@pbstu.com>\n"
 "Language-Team: \n"
@@ -232,7 +232,7 @@ msgstr "◇ 无 (系统声音) ◇"
 
 #. __ terminal theme / colour scheme
 #. __ emojis style
-#: config.c:3061 config.c:3221 config.c:4023
+#: config.c:3061 config.c:3221 config.c:4025
 msgid "◇ None ◇"
 msgstr "◇ 无 ◇"
 
@@ -246,120 +246,120 @@ msgstr ""
 msgid "downloaded / give me a name!"
 msgstr "已下载 / 给我起名！"
 
-#: config.c:3177 config.c:3332 config.c:3414
+#: config.c:3177 config.c:3333 config.c:3416
 msgid "Could not load web theme"
 msgstr "无法加载网络主题"
 
-#: config.c:3526 config.c:3627
+#: config.c:3528 config.c:3629
 msgid "Cannot write theme file"
 msgstr "无法写入主题文件"
 
-#: config.c:3531 config.c:3632 config.c:3637
+#: config.c:3533 config.c:3634 config.c:3639
 msgid "Cannot store theme file"
 msgstr "无法储存主题文件"
 
 #. __ Options - Text:
-#: config.c:4100 config.c:4468 config.c:4567
+#: config.c:4102 config.c:4470 config.c:4569
 msgid "as font"
 msgstr "字形"
 
 #. __ Options - Text:
-#: config.c:4101 config.c:4473 config.c:4572
+#: config.c:4103 config.c:4475 config.c:4574
 msgid "as colour"
 msgstr "颜色"
 
-#: config.c:4102
+#: config.c:4104
 msgid "as font & as colour"
 msgstr "字形 & 颜色"
 
 #. __ Options - Text:
-#: config.c:4103 config.c:4478 config.c:4577
+#: config.c:4105 config.c:4480 config.c:4579
 msgid "xterm"
 msgstr ""
 
 #. __ Dialog button - show About text
-#: config.c:4251
+#: config.c:4253
 msgid "About..."
 msgstr "关于..."
 
 #. __ Dialog button - save changes
-#: config.c:4254
+#: config.c:4256
 msgid "Save"
 msgstr "保存"
 
 #. __ Dialog button - cancel
-#: config.c:4258 winctrls.c:1277 windialog.c:895
+#: config.c:4260 winctrls.c:1277 windialog.c:895
 msgid "Cancel"
 msgstr "取消"
 
 #. __ Dialog button - apply changes
-#: config.c:4262
+#: config.c:4264
 msgid "Apply"
 msgstr "应用"
 
 #. __ Dialog button - take notice
-#: config.c:4266 windialog.c:892
+#: config.c:4268 windialog.c:892
 msgid "I see"
 msgstr "我了解了"
 
 #. __ Dialog button - confirm action
-#: config.c:4268 winctrls.c:1276 windialog.c:894
+#: config.c:4270 winctrls.c:1276 windialog.c:894
 msgid "OK"
 msgstr "确定"
 
 #. __ Options - Looks: treeview label
-#: config.c:4275 config.c:4336 config.c:4395
+#: config.c:4277 config.c:4338 config.c:4397
 msgid "Looks"
 msgstr "外观"
 
 #. __ Options - Looks: panel title
-#: config.c:4277
+#: config.c:4279
 msgid "Looks in Terminal"
 msgstr "终端外观"
 
 #. __ Options - Looks: section title
-#: config.c:4279
+#: config.c:4281
 msgid "Colours"
 msgstr "颜色"
 
 #. __ Options - Looks:
-#: config.c:4283
+#: config.c:4285
 msgid "&Foreground..."
 msgstr "前景(&F)..."
 
 #. __ Options - Looks:
-#: config.c:4287
+#: config.c:4289
 msgid "&Background..."
 msgstr "背景(&B)..."
 
 #. __ Options - Looks:
-#: config.c:4291
+#: config.c:4293
 msgid "&Cursor..."
 msgstr "光标(&C)..."
 
 #. __ Options - Looks:
-#: config.c:4302
+#: config.c:4304
 msgid "&Theme"
 msgstr "主题(&T)"
 
 #. __ Options - Looks: store colour scheme
-#: config.c:4307 config.c:4320 winctrls.c:484
+#: config.c:4309 config.c:4322 winctrls.c:484
 msgid "Store"
 msgstr "保存"
 
 #. __ Options - Looks:
 #. __ Options - Looks: configure dark mode theme
-#: config.c:4316 config.c:4328
+#: config.c:4318 config.c:4330
 msgid "&Darkmode"
 msgstr "深色模式"
 
 #. __ Options - Looks: name of web service
-#: config.c:4333
+#: config.c:4335
 msgid "Color Scheme Designer"
 msgstr "颜色样式设计工具"
 
 #. __ Options - Looks: section title
-#: config.c:4338
+#: config.c:4340
 msgid "Transparency"
 msgstr "透明度"
 
@@ -367,261 +367,261 @@ msgstr "透明度"
 #. __ Options - Keys:
 #. __ Options - Mouse:
 #. __ Options - Window:
-#: config.c:4344 config.c:4726 config.c:4889 config.c:5087
+#: config.c:4346 config.c:4728 config.c:4891 config.c:5089
 msgid "&Off"
 msgstr "关(&O)"
 
 #. __ Options - Looks: transparency
-#: config.c:4346
+#: config.c:4348
 msgid "&Low"
 msgstr "低(&L)"
 
 #. __ Options - Looks: transparency, short form of radio button label "Medium"
-#: config.c:4348
+#: config.c:4350
 msgid "&Med."
 msgstr "中(&M)"
 
 #. __ Options - Looks: transparency
-#: config.c:4350
+#: config.c:4352
 msgid "&Medium"
 msgstr "中(&M)"
 
 #. __ Options - Looks: transparency
-#: config.c:4352
+#: config.c:4354
 msgid "&High"
 msgstr "高(&H)"
 
 #. __ Options - Looks: transparency
-#: config.c:4354
+#: config.c:4356
 msgid "Gla&ss"
 msgstr "玻璃"
 
 #. __ Options - Looks: transparency
-#: config.c:4361 config.c:4373 config.c:4380
+#: config.c:4363 config.c:4375 config.c:4382
 msgid "Opa&que when focused"
 msgstr "获得焦点后变为不透明(&Q)"
 
 #. __ Options - Looks: transparency
-#: config.c:4366
+#: config.c:4368
 msgid "Blu&r"
 msgstr "模糊(&R)"
 
-#: config.c:4387
+#: config.c:4389
 msgid "◄"
 msgstr ""
 
-#: config.c:4390
+#: config.c:4392
 msgid "►"
 msgstr ""
 
 #. __ Options - Looks: section title
-#: config.c:4397
+#: config.c:4399
 msgid "Cursor"
 msgstr "光标"
 
 #. __ Options - Looks: cursor type
-#: config.c:4402
+#: config.c:4404
 msgid "Li&ne"
 msgstr "竖线"
 
 #. __ Options - Looks: cursor type
-#: config.c:4404
+#: config.c:4406
 msgid "Bloc&k"
 msgstr "方块"
 
 #. __ Options - Looks: cursor type
-#: config.c:4407
+#: config.c:4409
 msgid "Bo&x"
 msgstr ""
 
 #. __ Options - Looks: cursor type
-#: config.c:4410
+#: config.c:4412
 msgid "&Underscore"
 msgstr "下划线"
 
 #. __ Options - Looks: cursor feature
-#: config.c:4415
+#: config.c:4417
 msgid "Blinkin&g"
 msgstr "闪烁(&G)"
 
 #. __ Options - Text: treeview label
-#: config.c:4422 config.c:4447 config.c:4462 config.c:4511 config.c:4561
-#: config.c:4586 config.c:4608 config.c:4621 config.c:4629
+#: config.c:4424 config.c:4449 config.c:4464 config.c:4513 config.c:4563
+#: config.c:4588 config.c:4610 config.c:4623 config.c:4631
 msgid "Text"
 msgstr "文本"
 
 #. __ Options - Text: panel title
-#: config.c:4424
+#: config.c:4426
 msgid "Text and Font properties"
 msgstr "文本和字体属性"
 
 #. __ Options - Text: section title
-#: config.c:4426
+#: config.c:4428
 msgid "Font"
 msgstr "字体"
 
 #. __ Options - Text:
 #. __ Font chooser:
-#: config.c:4434 winctrls.c:1287
+#: config.c:4436 winctrls.c:1287
 msgid "Font st&yle:"
 msgstr "字体样式(&Y)"
 
 #. __ Font chooser:
-#: config.c:4439 winctrls.c:1289
+#: config.c:4441 winctrls.c:1289
 msgid "&Size:"
 msgstr "大小(&S)"
 
 #. __ Options - Text:
-#: config.c:4451 config.c:4530
+#: config.c:4453 config.c:4532
 msgid "Sho&w bold as font"
 msgstr "显示粗体字形(&W)"
 
 #. __ Options - Text:
-#: config.c:4456 config.c:4535
+#: config.c:4458 config.c:4537
 msgid "Show &bold as colour"
 msgstr "显示粗体颜色(&B)"
 
 #. __ Options - Text:
-#: config.c:4464 config.c:4485 config.c:4563 config.c:4590
+#: config.c:4466 config.c:4487 config.c:4565 config.c:4592
 msgid "Show bold"
 msgstr "显示粗体的"
 
 #. __ Options - Text:
-#: config.c:4492 config.c:4540 config.c:4596
+#: config.c:4494 config.c:4542 config.c:4598
 msgid "&Allow blinking"
 msgstr "允许闪烁(&A)"
 
 #. __ Options - Text:
-#: config.c:4497 config.c:4601
+#: config.c:4499 config.c:4603
 msgid "Show dim as font"
 msgstr "显示半隐字形(&W)"
 
 #. __ Options - Text:
-#: config.c:4515 config.c:4548 config.c:4583
+#: config.c:4517 config.c:4550 config.c:4585
 msgid "Font smoothing"
 msgstr "字体平滑"
 
 #. __ Options - Text:
-#: config.c:4518 config.c:4551 config.c:4777 config.c:4816 config.c:4970
-#: config.c:4983
+#: config.c:4520 config.c:4553 config.c:4779 config.c:4818 config.c:4972
+#: config.c:4985
 msgid "&Default"
 msgstr "默认(&D)"
 
 #. __ Options - Text:
 #. __ Options - Window: scrollbar
-#: config.c:4520 config.c:4553 config.c:4775 config.c:4814 config.c:4968
-#: config.c:4981 config.c:5068
+#: config.c:4522 config.c:4555 config.c:4777 config.c:4816 config.c:4970
+#: config.c:4983 config.c:5070
 msgid "&None"
 msgstr "无(&N)"
 
 #. __ Options - Text:
-#: config.c:4522 config.c:4555 config.c:4776 config.c:4815 config.c:4969
-#: config.c:4982
+#: config.c:4524 config.c:4557 config.c:4778 config.c:4817 config.c:4971
+#: config.c:4984
 msgid "&Partial"
 msgstr "部分(&P)"
 
 #. __ Options - Text:
-#: config.c:4524 config.c:4557 config.c:4778 config.c:4817 config.c:4971
-#: config.c:4984
+#: config.c:4526 config.c:4559 config.c:4780 config.c:4819 config.c:4973
+#: config.c:4986
 msgid "&Full"
 msgstr "全部(&F)"
 
-#: config.c:4611
+#: config.c:4613
 msgid "&Locale"
 msgstr "本地 &Locale"
 
-#: config.c:4614
+#: config.c:4616
 msgid "&Character set"
 msgstr "字符集(&C)"
 
 #. __ Options - Text - Emojis:
 #. __ Options - Text:
-#: config.c:4625 config.c:4631
+#: config.c:4627 config.c:4633
 msgid "Emojis"
 msgstr "Emoji"
 
 #. __ Options - Text - Emojis:
-#: config.c:4635
+#: config.c:4637
 msgid "Style"
 msgstr "风格"
 
 #. __ Options - Text - Emojis:
-#: config.c:4640
+#: config.c:4642
 msgid "Placement"
 msgstr "位置"
 
 #. __ Options - Keys: treeview label
-#: config.c:4648 config.c:4678 config.c:4713 config.c:4731
+#: config.c:4650 config.c:4680 config.c:4715 config.c:4733
 msgid "Keys"
 msgstr "按键"
 
 #. __ Options - Keys: panel title
-#: config.c:4650
+#: config.c:4652
 msgid "Keyboard features"
 msgstr "键盘特性"
 
 #. __ Options - Keys:
-#: config.c:4654
+#: config.c:4656
 msgid "&Backarrow sends ^H"
 msgstr "退格键发送 ^H (&B)"
 
 #. __ Options - Keys:
-#: config.c:4659
+#: config.c:4661
 msgid "&Delete sends DEL"
 msgstr "删除键发送 DEL (&D)"
 
 #. __ Options - Keys:
-#: config.c:4664
+#: config.c:4666
 msgid "Ctrl+LeftAlt is Alt&Gr"
 msgstr "将 Ctrl+左Alt 设置为 AltGr (&G)"
 
 #. __ Options - Keys:
-#: config.c:4669
+#: config.c:4671
 msgid "AltGr is also Alt"
 msgstr "将 AltGr 也视为 Alt"
 
 #. __ Options - Keys:
-#: config.c:4674
+#: config.c:4676
 msgid "&Esc/Enter reset IME to alphanumeric"
 msgstr "Esc/Enter 重置输入法为英文(&E)"
 
 #. __ Options - Keys: section title
-#: config.c:4680
+#: config.c:4682
 msgid "Shortcuts"
 msgstr "快捷键"
 
 #. __ Options - Keys:
-#: config.c:4683
+#: config.c:4685
 msgid "Cop&y and Paste (Ctrl/Shift+Ins)"
 msgstr "复制和粘贴(&Y) (Ctrl/Shift+Ins)"
 
 #. __ Options - Keys:
-#: config.c:4688
+#: config.c:4690
 msgid "&Menu and Full Screen (Alt+Space/Enter)"
 msgstr "显示菜单和全屏(&M) (Alt+Space/Enter)"
 
 #. __ Options - Keys:
-#: config.c:4693
+#: config.c:4695
 msgid "&Switch window (Ctrl+[Shift+]Tab)"
 msgstr "切换窗口(&S) (Ctrl+[Shift+]Tab)"
 
 #. __ Options - Keys:
-#: config.c:4698
+#: config.c:4700
 msgid "&Zoom (Ctrl+plus/minus/zero)"
 msgstr "缩放(&Z) (Ctrl + +/-/0)"
 
 #. __ Options - Keys:
-#: config.c:4703
+#: config.c:4705
 msgid "&Alt+Fn shortcuts"
 msgstr "Alt+Fn 快捷键(&A)"
 
 #. __ Options - Keys:
-#: config.c:4708
+#: config.c:4710
 msgid "&Ctrl+Shift+letter shortcuts"
 msgstr "Ctrl+Shift+字母快捷键(&C)"
 
 #. __ Options - Keys: section title
-#: config.c:4715 config.c:4733
+#: config.c:4717 config.c:4735
 msgid "Compose key"
 msgstr "组合按键"
 
@@ -630,7 +630,7 @@ msgstr "组合按键"
 #. __ Options - Modifier - Shift:
 #. __ Options - Window:
 #. __ Options - Modifier - Shift:
-#: config.c:4720 config.c:4881 config.c:4900 config.c:5079 config.c:5098
+#: config.c:4722 config.c:4883 config.c:4902 config.c:5081 config.c:5100
 msgid "&Shift"
 msgstr ""
 
@@ -639,7 +639,7 @@ msgstr ""
 #. __ Options - Modifier - Control:
 #. __ Options - Window:
 #. __ Options - Modifier - Control:
-#: config.c:4722 config.c:4883 config.c:4908 config.c:5081 config.c:5106
+#: config.c:4724 config.c:4885 config.c:4910 config.c:5083 config.c:5108
 msgid "&Ctrl"
 msgstr ""
 
@@ -648,112 +648,112 @@ msgstr ""
 #. __ Options - Modifier - Alt:
 #. __ Options - Window:
 #. __ Options - Modifier - Alt:
-#: config.c:4724 config.c:4885 config.c:4904 config.c:5083 config.c:5102
+#: config.c:4726 config.c:4887 config.c:4906 config.c:5085 config.c:5104
 msgid "&Alt"
 msgstr ""
 
 #. __ Options - Mouse: treeview label
-#: config.c:4740 config.c:4829 config.c:4861
+#: config.c:4742 config.c:4831 config.c:4863
 msgid "Mouse"
 msgstr "鼠标"
 
 #. __ Options - Mouse: panel title
-#: config.c:4742
+#: config.c:4744
 msgid "Mouse functions"
 msgstr "鼠标功能"
 
 #. __ Options - Mouse:
 #. __ Options - Selection:
-#: config.c:4750 config.c:4783 config.c:4799 config.c:4947
+#: config.c:4752 config.c:4785 config.c:4801 config.c:4949
 msgid "Cop&y on select"
 msgstr "选中后立即复制(&Y)"
 
 #. __ Options - Mouse:
 #. __ Options - Selection:
 #. __ Context menu:
-#: config.c:4755 config.c:4788 config.c:4952 wininput.c:693
+#: config.c:4757 config.c:4790 config.c:4954 wininput.c:693
 msgid "Copy with TABs"
 msgstr "以纯文本复制（包括 &Tab）"
 
 #. __ Options - Mouse:
 #. __ Options - Selection:
-#: config.c:4760 config.c:4793 config.c:4805 config.c:4957
+#: config.c:4762 config.c:4795 config.c:4807 config.c:4959
 msgid "Copy as &rich text"
 msgstr "以富文本复制(&R)"
 
 #. __ Options - Mouse:
 #. __ Options - Selection:
-#: config.c:4766 config.c:4773 config.c:4812 config.c:4966 config.c:4979
+#: config.c:4768 config.c:4775 config.c:4814 config.c:4968 config.c:4981
 msgid "Copy as &HTML"
 msgstr "以 HTML 复制"
 
 #. __ Options - Mouse:
-#: config.c:4825
+#: config.c:4827
 msgid "Clic&ks place command line cursor"
 msgstr "使用鼠标点击来定位光标(&K)"
 
 #. __ Options - Mouse: section title
-#: config.c:4831
+#: config.c:4833
 msgid "Click actions"
 msgstr "单击动作"
 
 #. __ Options - Mouse:
-#: config.c:4834
+#: config.c:4836
 msgid "Right mouse button"
 msgstr "鼠标右键"
 
 #. __ Options - Mouse:
-#: config.c:4837 config.c:4851
+#: config.c:4839 config.c:4853
 msgid "&Paste"
 msgstr "粘贴(&P)"
 
 #. __ Options - Mouse:
-#: config.c:4839 config.c:4853
+#: config.c:4841 config.c:4855
 msgid "E&xtend"
 msgstr "扩展(&E)"
 
 #. __ Options - Mouse:
-#: config.c:4841
+#: config.c:4843
 msgid "&Menu"
 msgstr "菜单(&M)"
 
 #. __ Options - Mouse:
-#: config.c:4843 config.c:4857
+#: config.c:4845 config.c:4859
 msgid "Ente&r"
 msgstr "回车(&E)"
 
 #. __ Options - Mouse:
-#: config.c:4848
+#: config.c:4850
 msgid "Middle mouse button"
 msgstr "鼠标中键"
 
 #. __ Options - Mouse:
-#: config.c:4855
+#: config.c:4857
 msgid "&Nothing"
 msgstr "无(&N)"
 
 #. __ Options - Mouse: section title
-#: config.c:4863
+#: config.c:4865
 msgid "Application mouse mode"
 msgstr "应用程序鼠标模式"
 
 #. __ Options - Mouse:
-#: config.c:4866
+#: config.c:4868
 msgid "Default click target"
 msgstr "默认点击目标"
 
 #. __ Options - Mouse: application mouse mode click target
-#: config.c:4869
+#: config.c:4871
 msgid "&Window"
 msgstr "窗口(&W)"
 
 #. __ Options - Mouse: application mouse mode click target
-#: config.c:4871
+#: config.c:4873
 msgid "&Application"
 msgstr "应用程序(&A)"
 
 #. __ Options - Mouse:
-#: config.c:4878 config.c:4896
+#: config.c:4880 config.c:4898
 msgid "Modifier for overriding default"
 msgstr "覆盖默认配置的修饰键"
 
@@ -761,194 +761,194 @@ msgstr "覆盖默认配置的修饰键"
 #. __ Options - Modifier - Win:
 #. __ Options - Window:
 #. __ Options - Modifier - Win:
-#: config.c:4887 config.c:4912 config.c:5085 config.c:5110
+#: config.c:4889 config.c:4914 config.c:5087 config.c:5112
 msgid "&Win"
 msgstr ""
 
 #. __ Options - Modifier - Super:
-#: config.c:4916 config.c:5114
+#: config.c:4918 config.c:5116
 msgid "&Sup"
 msgstr ""
 
 #. __ Options - Modifier - Hyper:
-#: config.c:4920 config.c:5118
+#: config.c:4922 config.c:5120
 msgid "&Hyp"
 msgstr ""
 
 #. __ Options - Selection: treeview label
-#: config.c:4930 config.c:4941 config.c:5005
+#: config.c:4932 config.c:4943 config.c:5007
 msgid "Selection"
 msgstr "选中"
 
 #. __ Options - Selection: panel title
-#: config.c:4932
+#: config.c:4934
 msgid "Selection and clipboard"
 msgstr "选中字符和剪切板功能"
 
 #. __ Options - Selection:
-#: config.c:4936
+#: config.c:4938
 msgid "Clear selection on input"
 msgstr "输入后取消选中"
 
 #. __ Options - Selection: section title
-#: config.c:4943
+#: config.c:4945
 msgid "Clipboard"
 msgstr "剪切板"
 
 #. __ Options - Selection:
-#: config.c:4993
+#: config.c:4995
 msgid "Trim space from selection"
 msgstr "移除不必要的空格"
 
 #. __ Options - Selection:
-#: config.c:4999
+#: config.c:5001
 msgid "Allow setting selection"
 msgstr "允许使用 OSC 52 转义字符设置剪切板内容"
 
 #. __ Options - Selection: section title
 #. __ Options - Window: treeview label
-#: config.c:5007 config.c:5029 config.c:5054 config.c:5127
+#: config.c:5009 config.c:5031 config.c:5056 config.c:5129
 msgid "Window"
 msgstr "窗口"
 
 #. __ Options - Selection: clock position of info popup for text size
-#: config.c:5012
+#: config.c:5014
 msgid "Show size while selecting (0..12)"
 msgstr "选择时显示尺寸 (0:关闭/1-12:方位)"
 
 #. __ Options - Selection:
-#: config.c:5019
+#: config.c:5021
 msgid "Suspend output while selecting"
 msgstr "选择时暂停屏幕输出"
 
 #. __ Options - Window: panel title
-#: config.c:5031
+#: config.c:5033
 msgid "Window properties"
 msgstr "窗口属性"
 
 #. __ Options - Window: section title
-#: config.c:5033
+#: config.c:5035
 msgid "Default size"
 msgstr "默认大小"
 
 #. __ Options - Window:
-#: config.c:5037
+#: config.c:5039
 msgid "Colu&mns"
 msgstr "列数"
 
 #. __ Options - Window:
-#: config.c:5041
+#: config.c:5043
 msgid "Ro&ws"
 msgstr "行数"
 
 #. __ Options - Window:
-#: config.c:5045
+#: config.c:5047
 msgid "C&urrent size"
 msgstr "当前大小(&U)"
 
 #. __ Options - Window:
-#: config.c:5050
+#: config.c:5052
 msgid "Re&wrap on resize"
 msgstr "调整大小时重新折行(&W)"
 
 #. __ Options - Window:
-#: config.c:5058
+#: config.c:5060
 msgid "Scroll&back lines"
 msgstr "保存历史行数"
 
 #. __ Options - Window:
-#: config.c:5063
+#: config.c:5065
 msgid "Scrollbar"
 msgstr "滚动条"
 
 #. __ Options - Window: scrollbar
-#: config.c:5066
+#: config.c:5068
 msgid "&Left"
 msgstr "左(&L)"
 
 #. __ Options - Window: scrollbar
-#: config.c:5070
+#: config.c:5072
 msgid "&Right"
 msgstr "右(&R)"
 
 #. __ Options - Window:
-#: config.c:5076 config.c:5094
+#: config.c:5078 config.c:5096
 msgid "Modifier for scrolling"
 msgstr "用于滚动的修饰键"
 
 #. __ Options - Window:
-#: config.c:5123
+#: config.c:5125
 msgid "&PgUp and PgDn scroll without modifier"
 msgstr "即使不按修饰键，也用 PgUp 和 PgDn 滚动"
 
 #. __ Options - Window: section title
-#: config.c:5129
+#: config.c:5131
 msgid "UI language"
 msgstr "界面语言"
 
 #. __ Options - Terminal: treeview label
-#: config.c:5139 config.c:5152 config.c:5213 config.c:5227
+#: config.c:5141 config.c:5154 config.c:5215 config.c:5229
 msgid "Terminal"
 msgstr "终端"
 
 #. __ Options - Terminal: panel title
-#: config.c:5141
+#: config.c:5143
 msgid "Terminal features"
 msgstr "终端特性"
 
 #. __ Options - Terminal:
-#: config.c:5145
+#: config.c:5147
 msgid "&Type"
 msgstr "终端类型(&T)"
 
 #. __ Options - Terminal: answerback string for ^E request
-#: config.c:5149
+#: config.c:5151
 msgid "&Answerback"
 msgstr "应答字符串(&A)"
 
 #. __ Options - Terminal: section title
-#: config.c:5154
+#: config.c:5156
 msgid "Bell"
 msgstr "响铃"
 
 #. __ Options - Terminal: bell
-#: config.c:5161
+#: config.c:5163
 msgid "► &Play"
 msgstr "► 播放(&P)"
 
 #. __ Options - Terminal: bell
-#: config.c:5167
+#: config.c:5169
 msgid "&Wave"
 msgstr "声音"
 
 #. __ Options - Terminal: bell
-#: config.c:5189 config.c:5202
+#: config.c:5191 config.c:5204
 msgid "&Flash"
 msgstr "闪屏(&F)"
 
 #. __ Options - Terminal: bell
-#: config.c:5191 config.c:5206
+#: config.c:5193 config.c:5208
 msgid "&Highlight in taskbar"
 msgstr "任务栏高亮(&H)"
 
 #. __ Options - Terminal: bell
-#: config.c:5193 config.c:5210
+#: config.c:5195 config.c:5212
 msgid "&Popup"
 msgstr "弹出(&P)"
 
 #. __ Options - Terminal: section title
-#: config.c:5215
+#: config.c:5217
 msgid "Printer"
 msgstr "打印机"
 
 #. __ Options - Terminal:
-#: config.c:5230
+#: config.c:5232
 msgid "Prompt about running processes on &close"
 msgstr "退出时提示还在运行的进程(&C)"
 
 #. __ Options - Terminal:
 #. __ Context menu:
-#: config.c:5235 wininput.c:589
+#: config.c:5237 wininput.c:589
 msgid "Status Line"
 msgstr "状态栏"
 
