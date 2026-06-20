@@ -8658,6 +8658,8 @@ static int dynfonts = 0;
   if (cfg.window)
     SetFocus(wnd);
 
+  show_win_status("show", wnd);
+
   is_init = true;
   // tab management: secure transparency appearance by hiding other tabs
   win_set_tab_focus('I');  // hide other tabs
