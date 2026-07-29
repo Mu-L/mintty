@@ -2665,12 +2665,13 @@ show_win_status(char * tag, HWND wnd)
   LONG style = GetWindowLong(wnd, GWL_STYLE);
   int h, w;
   win_get_pixels(&h, &w, false);
-  printf("%s[%d:%p] show %d y normal %dx%d (%dx%d @%d:%d) max %d zoom %d\n", 
+  printf("%s[%d:%p] show %d y normal %dx%d (%dx%d @%d:%d) child %d max %d zoom %d\n", 
          tag, getpid(), wnd, 
          pl.showCmd, 
          h / cell_height, w / cell_width,
          fr.bottom - fr.top, fr.right - fr.left, fr.top, fr.left,
-         style & WS_MAXIMIZE,
+         !!(style & WS_CHILD),
+         !!(style & WS_MAXIMIZE),
          IsZoomed(wnd)
         );
   bool layered = GetWindowLong(wnd, GWL_EXSTYLE) & WS_EX_LAYERED;
@@ -8003,6 +8004,7 @@ static int dynfonts = 0;
     horflush();
     horbar = _horbar;
   }
+  show_win_status("create", wnd);
 
   // Dark mode support
   win_dark_mode(wnd);
