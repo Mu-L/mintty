@@ -3416,6 +3416,35 @@ win_adjust_borders(int t_width, int t_height)
   norm_extra_height = extra_height;
 }
 
+/*
+  Fix fullscreen state after changing DPI or monitor (see below);
+  this must be invoked after child_resize !
+  As it causes recursion of win_adapt_term_size, it would otherwise 
+  resize the client to the incorrect previous values (#1370).
+ */
+static void
+fix_zoomed()
+{
+  //printf("<fix_zoomed %d\n", IsZoomed(wnd));
+  if (IsZoomed(wnd)) {
+    // ensure window will be maximised after changed monitor dimensions, e.g.
+    // - after changing DPI/zoom factor
+    // - after moving window to other monitor (git-for-windows/git#6085)
+    // avoid complete (and error-prone) refactoring of window resizing code;
+    // as a workaround, clone the essential code of win_maximise(1):
+
+   /* Resize ourselves to exactly cover the nearest monitor. */
+    MONITORINFO mi;
+    get_my_monitor_info(&mi);
+    RECT fr = mi.rcMonitor;
+    // set window size
+    SetWindowPos(wnd, HWND_TOP, fr.left, fr.top,
+                 fr.right - fr.left, fr.bottom - fr.top,
+                 SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOZORDER);
+  }
+  //printf(">fix_zoomed %d\n", IsZoomed(wnd));
+}
+
 static void
 do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool quick_reflow)
 {
@@ -3460,6 +3489,9 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
     return;
   }
 
+  // fix the fullscreen state before calculating term_height and term_width
+  fix_zoomed();
+
  /* Current window sizes ... */
   RECT cr, wr;
   GetClientRect(wnd, &cr);
@@ -3480,23 +3512,6 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
   }
   if (!sync_size_with_font && win_search_visible()) {
     term_height -= SEARCHBAR_HEIGHT;
-  }
-
-  if (IsZoomed(wnd)) {
-    // ensure window will be maximised after changed monitor dimensions, e.g.
-    // - after changing DPI/zoom factor
-    // - after moving window to other monitor (git-for-windows/git#6085)
-    // avoid complete (and error-prone) refactoring of window resizing code;
-    // as a workaround, clone the essential code of win_maximise(1):
-
-   /* Resize ourselves to exactly cover the nearest monitor. */
-    MONITORINFO mi;
-    get_my_monitor_info(&mi);
-    RECT fr = mi.rcMonitor;
-    // set window size
-    SetWindowPos(wnd, HWND_TOP, fr.left, fr.top,
-                 fr.right - fr.left, fr.bottom - fr.top,
-                 SWP_FRAMECHANGED | SWP_NOACTIVATE | SWP_NOZORDER);
   }
 
   if (scale_font_with_size && term.cols != 0 && term.rows != 0) {
@@ -3556,6 +3571,9 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
     child_resize(&ws);
   }
 
+  // we could fix the fullscreen state here or end of do_win_adapt_term_size
+  //fix_zoomed();
+
   win_invalidate_all(false);
 
   win_update_search();
@@ -3591,6 +3609,9 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
           win_fix_position(false);
     }
   }
+
+  // fix the fullscreen state
+  //fix_zoomed();
 }
 
 void
