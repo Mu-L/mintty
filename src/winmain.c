@@ -3418,7 +3418,8 @@ win_adjust_borders(int t_width, int t_height)
 
 /*
   Fix fullscreen state after changing DPI or monitor (see below);
-  this must be invoked after child_resize !
+  this must be invoked before calculating term_height and term_width, 
+  or after invoking child_resize, but not in between!
   As it causes recursion of win_adapt_term_size, it would otherwise 
   resize the client to the incorrect previous values (#1370).
  */
@@ -3571,7 +3572,7 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
     child_resize(&ws);
   }
 
-  // we could fix the fullscreen state here or end of do_win_adapt_term_size
+  // we could fix the fullscreen state here
   //fix_zoomed();
 
   win_invalidate_all(false);
@@ -3609,9 +3610,6 @@ do_win_adapt_term_size(bool sync_size_with_font, bool scale_font_with_size, bool
           win_fix_position(false);
     }
   }
-
-  // fix the fullscreen state
-  //fix_zoomed();
 }
 
 void
