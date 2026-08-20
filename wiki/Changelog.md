@@ -1,4 +1,5 @@
   * Tweak keep-window-maximised fix not to resize the terminal incorrectly (#1370).
+  * Tweak keyclick, avoid initial phantom click sound.
 
 ### 3.8.3 (09 June 2026) ###
 
