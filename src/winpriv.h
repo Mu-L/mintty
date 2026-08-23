@@ -182,9 +182,9 @@ extern int sync_level(void);
 
 extern int search_monitors(int * minx, int * miny, HMONITOR lookup_mon, int get_primary, MONITORINFO *mip);
 
-extern void win_set_ime_open(bool);
-extern void win_set_ime(bool open);
+extern void win_set_ime(bool native);
 extern bool win_get_ime(void);
+extern void term_indicate_ime(bool);
 
 extern bool is_win_dark_mode(void);
 extern void win_dark_mode(HWND w);

@@ -4426,7 +4426,7 @@ static struct {
       && message != WM_MOUSEMOVE && message != WM_NCMOUSEMOVE
 # endif
 # ifndef debug_minor_messages
-      && !strstr(wm_name, "_GET") && !strstr(wm_name, "_IME")
+      && !strstr(wm_name, "_GET")
 # endif
      )
 # ifdef debug_only_sizepos_messages
@@ -5179,11 +5179,16 @@ static struct {
 #endif
 
     when WM_INPUTLANGCHANGE:
-      win_set_ime_open(ImmIsIME(GetKeyboardLayout(0)) && ImmGetOpenStatus(imc));
+      term_indicate_ime(ImmIsIME(GetKeyboardLayout(0)) && ImmGetOpenStatus(imc));
 
     when WM_IME_NOTIFY:
+      //printf("WM_IME_NOTIFY openstatus %d getopenstatus %d get_ime %d\n", wp == IMN_SETOPENSTATUS, ImmGetOpenStatus(imc), win_get_ime());
+#ifdef old_ime_handling
       if (wp == IMN_SETOPENSTATUS)
-        win_set_ime_open(ImmGetOpenStatus(imc));
+        term_indicate_ime(ImmGetOpenStatus(imc));
+#else
+      term_indicate_ime(ImmGetOpenStatus(imc) && win_get_ime());
+#endif
 
     when WM_IME_STARTCOMPOSITION:
       ImmSetCompositionFont(imc, &lfont);
@@ -5925,17 +5930,45 @@ win_global_keyboard_hook(bool on)
     UnhookWindowsHookEx(kb_hook);
 }
 
+/*
+   Return IME native input mode (actually using IME popup selection)
+ */
 bool
 win_get_ime(void)
 {
+#ifdef old_ime_handling
   return ImmGetOpenStatus(imc);
+#else
+  DWORD conversion, sentence;
+  if (ImmGetConversionStatus(imc, &conversion, &sentence))
+    return conversion & IME_CMODE_NATIVE;
+  else
+    return false;
+#endif
 }
 
+/*
+   Switch IME native input mode (actually using IME popup selection)
+ */
 void
 win_set_ime(bool open)
 {
+  //printf("win_set_ime %d openstatus %d\n", open, ImmGetOpenStatus(imc));
+#ifdef old_ime_handling
   ImmSetOpenStatus(imc, open);
-  win_set_ime_open(open);
+#else
+  DWORD conversion, sentence;
+  if (ImmGetConversionStatus(imc, &conversion, &sentence)) {
+    if (open)
+      conversion |= IME_CMODE_NATIVE;
+    else
+      conversion &= ~IME_CMODE_NATIVE;
+    ImmSetConversionStatus(imc, conversion, sentence);
+  }
+#endif
+
+  // change cursor (if IMECursorColour configured)
+  term_indicate_ime(open);
 }
 
 

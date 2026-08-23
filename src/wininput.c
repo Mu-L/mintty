@@ -2777,11 +2777,13 @@ C	M	+C	+A	"	"
 
   // On ESC or Enter key, restore keyboard IME state to alphanumeric mode.
   if (cfg.key_alpha_mode && (key == VK_RETURN || key == VK_ESCAPE) && !mods) {
-    HIMC imc = ImmGetContext(wnd);
+#ifdef old_key_alpha_mode_approach
     if (ImmGetOpenStatus(imc)) {
       ImmSetConversionStatus(imc, IME_CMODE_ALPHANUMERIC, IME_SMODE_NONE);
     }
-    ImmReleaseContext(wnd, imc);
+#else
+    win_set_ime(false);
+#endif
   }
 
   // Handling special shifted key functions

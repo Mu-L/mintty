@@ -1181,7 +1181,7 @@ win_zoom_font(int zoom, bool sync_size_with_font)
 
 static HDC dc;
 static enum { UPDATE_IDLE, UPDATE_BLOCKED, UPDATE_PENDING } update_state;
-static bool ime_open = false;
+static bool ime_open_native = false;
 
 static int update_skipped = 0;
 int lines_scrolled = 0;
@@ -1614,7 +1614,7 @@ do_update(void)
     int x = term.curs.x * cell_width + PADDING;
     int y = (term.curs.y - term.disptop) * cell_height + OFFSET + PADDING;
     SetCaretPos(x, y);
-    if (ime_open) {
+    if (ime_open_native) {
       COMPOSITIONFORM cf = {.dwStyle = CFS_POINT, .ptCurrentPos = {x, y}};
       ImmSetCompositionWindow(imc, &cf);
     }
@@ -1808,11 +1808,15 @@ another_font(struct fontfam * ff, int fontno)
   ff->fontflag[fontno] = true;
 }
 
+/*
+   Indicate IME status via cursor appearance.
+ */
 void
-win_set_ime_open(bool open)
+term_indicate_ime(bool open_native)
 {
-  if (open != ime_open) {
-    ime_open = open;
+  //printf("term_indicate_ime %d\n", open_native);
+  if (open_native != ime_open_native) {
+    ime_open_native = open_native;
     term.cursor_invalid = true;
     win_update(false);
   }
@@ -3227,8 +3231,8 @@ win_text(int tx, int ty, wchar *text, int len, cattr attr, cattr *textattr, usho
     // some tricky interworking needs to be sorted out (#1157);
     // currently the assumption is that line cursors should be thin enough 
     // to make this fix less important
-    cursor_colour = colours[ime_open ? IME_CURSOR_COLOUR_I : CURSOR_COLOUR_I];
-    //printf("cc (ime_open %d) %06X\n", ime_open, cursor_colour);
+    cursor_colour = colours[ime_open_native ? IME_CURSOR_COLOUR_I : CURSOR_COLOUR_I];
+    //printf("cc (ime_open_native %d) %06X\n", ime_open_native, cursor_colour);
 
     //static uint mindist = 32768;
     static uint mindist = 22222;
