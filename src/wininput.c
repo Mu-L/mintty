@@ -2776,7 +2776,11 @@ C	M	+C	+A	"	"
     exit_mintty();
 
   // On ESC or Enter key, restore keyboard IME state to alphanumeric mode.
-  if (cfg.key_alpha_mode && (key == VK_RETURN || key == VK_ESCAPE) && !mods) {
+  // (#1224, #1375)
+  if (cfg.key_alpha_mode && !term.on_alt_screen
+   && (key == VK_RETURN || key == VK_ESCAPE) && !mods
+     )
+  {
 #ifdef old_key_alpha_mode_approach
     if (ImmGetOpenStatus(imc)) {
       ImmSetConversionStatus(imc, IME_CMODE_ALPHANUMERIC, IME_SMODE_NONE);

@@ -5179,16 +5179,12 @@ static struct {
 #endif
 
     when WM_INPUTLANGCHANGE:
-      term_indicate_ime(ImmIsIME(GetKeyboardLayout(0)) && ImmGetOpenStatus(imc));
+///      term_indicate_ime(ImmIsIME(GetKeyboardLayout(0)) && ImmGetOpenStatus(imc));
+      term_indicate_ime(win_get_ime());
 
     when WM_IME_NOTIFY:
-      //printf("WM_IME_NOTIFY openstatus %d getopenstatus %d get_ime %d\n", wp == IMN_SETOPENSTATUS, ImmGetOpenStatus(imc), win_get_ime());
-#ifdef old_ime_handling
-      if (wp == IMN_SETOPENSTATUS)
-        term_indicate_ime(ImmGetOpenStatus(imc));
-#else
-      term_indicate_ime(ImmGetOpenStatus(imc) && win_get_ime());
-#endif
+      if (wp == IMN_SETOPENSTATUS || wp == IMN_SETCONVERSIONMODE)
+        term_indicate_ime(win_get_ime());
 
     when WM_IME_STARTCOMPOSITION:
       ImmSetCompositionFont(imc, &lfont);
@@ -5939,9 +5935,9 @@ win_get_ime(void)
 #ifdef old_ime_handling
   return ImmGetOpenStatus(imc);
 #else
-  DWORD conversion, sentence;
-  if (ImmGetConversionStatus(imc, &conversion, &sentence))
-    return conversion & IME_CMODE_NATIVE;
+  DWORD conv, sent;
+  if (ImmGetOpenStatus(imc) && ImmGetConversionStatus(imc, &conv, &sent))
+    return conv & IME_CMODE_NATIVE;
   else
     return false;
 #endif
@@ -5953,10 +5949,14 @@ win_get_ime(void)
 void
 win_set_ime(bool open)
 {
-  //printf("win_set_ime %d openstatus %d\n", open, ImmGetOpenStatus(imc));
+printf("win_set_ime %d [openstatus %d getIME %d]\n", open, ImmGetOpenStatus(imc), win_get_ime());
+
 #ifdef old_ime_handling
   ImmSetOpenStatus(imc, open);
 #else
+///
+  ImmSetOpenStatus(imc, open);
+
   DWORD conversion, sentence;
   if (ImmGetConversionStatus(imc, &conversion, &sentence)) {
     if (open)
