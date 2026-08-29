@@ -929,10 +929,14 @@ blinking interval in milliseconds.
 | **4**   | underscore   | no        |
 | **5**   | line         | yes       |
 | **6**   | line         | no        |
-| **7**   | box          | yes       |
-| **8**   | box          | no        |
+| **7**   | default      | default   |
+| **11**  | box          | yes       |
+| **12**  | box          | no        |
 
 Note: There is one space character before the `q`.
+
+Note: Private values 11, 12 had to be moved from previous values 7, 8 
+as xterm 411 added value 7.
 
 ### Cursor size ###
 
