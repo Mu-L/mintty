@@ -4834,6 +4834,7 @@ do_cmd(void)
                 if (bf) {
                   string bf1 = asform("%c%s", *term.cmd_buf, bf);
                   wchar * bn = cs__mbstowcs(bf1);
+                  delete(bf1);
                   if (!bn) {
                     delete(bf);
                     break;
