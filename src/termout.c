@@ -4366,7 +4366,7 @@ do_dcs(void)
     when DCS_ESCAPE: {     // DECRQSS
       cattr attr = term.curs.attr;
       if (!strcmp(s, "m")) { // SGR
-        char buf[90], *p = buf;
+        char buf[222], *p = buf;
         p += sprintf(p, "\eP1$r0");
 
         if (attr.attr & ATTR_BOLD)
