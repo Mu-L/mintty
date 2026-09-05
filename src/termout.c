@@ -2356,7 +2356,7 @@ do_sgr(void)
           ulong m = term.csi_argv[i + 4];
           ulong y = term.csi_argv[i + 5];
           ulong k = term.csi_argv[i + 1] == 4 ? term.csi_argv[i + 6] : 0;
-          if (c <= f && m <= f && y <= f && k <= f) {
+          if (f > 0 && c <= f && m <= f && y <= f && k <= f) {
             uint r = (f - c) * (f - k) / f * 255 / f;
             uint g = (f - m) * (f - k) / f * 255 / f;
             uint b = (f - y) * (f - k) / f * 255 / f;
@@ -2415,7 +2415,7 @@ do_sgr(void)
           ulong m = term.csi_argv[i + 4];
           ulong y = term.csi_argv[i + 5];
           ulong k = term.csi_argv[i + 1] == 4 ? term.csi_argv[i + 6] : 0;
-          if (c <= f && m <= f && y <= f && k <= f) {
+          if (f > 0 && c <= f && m <= f && y <= f && k <= f) {
             uint r = (f - c) * (f - k) / f * 255 / f;
             uint g = (f - m) * (f - k) / f * 255 / f;
             uint b = (f - y) * (f - k) / f * 255 / f;
@@ -2450,7 +2450,7 @@ do_sgr(void)
           ulong m = term.csi_argv[i + 4];
           ulong y = term.csi_argv[i + 5];
           ulong k = term.csi_argv[i + 1] == 4 ? term.csi_argv[i + 6] : 0;
-          if (c <= f && m <= f && y <= f && k <= f) {
+          if (f > 0 && c <= f && m <= f && y <= f && k <= f) {
             uint r = (f - c) * (f - k) / f * 255 / f;
             uint g = (f - m) * (f - k) / f * 255 / f;
             uint b = (f - y) * (f - k) / f * 255 / f;
